@@ -18,19 +18,8 @@
         </svg>
     </div>
     <product :premium="premium" @add-to-card="UpdateCard"></product>
-    <product-tab></product-tab>
+    <product-tab :reviews="reviews"></product-tab>
     <product-review @review-submitted="addReview"></product-review>
-    <div>
-        <h2>Reviews</h2>
-        <p v-if="!reviews.length">There are no reviews yet.</p>
-        <ul class="list-group">
-            <li v-for="review in reviews" class="list-group-item">
-                <p> Name:{{ review.name }}</p>
-                <p>Rating: {{ review.rating }}</p>
-                <p>Comment:{{ review.review }}</p>
-            </li>
-        </ul>
-    </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="index.js"></script>

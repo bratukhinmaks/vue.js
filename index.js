@@ -153,17 +153,37 @@ Vue.component('product-review',{
 });
 
 Vue.component('product-tab',{
+    props:{
+        reviews:{
+            type:Array,
+            required: true,
+        }
+    },
     template:`
-    <div>
+<div>
+
+<div>
     <span class="tab"
     :class="{activeTab:selectedTab===tab}"
     v-for="tab in tabs"
     @click="selectedTab=tab">{{tab}}</span>
 </div>
-    `,
+ <div v-show="selectedTab==='Review'">
+      <h2>Reviews</h2>
+      <p v-if="!reviews.length">There are no reviews yet.</p>
+      <ul class="list-group">
+           <li v-for="review in reviews" class="list-group-item">
+              <p> Name:{{ review.name }}</p>
+              <p>Rating: {{ review.rating }}</p>
+              <p>Comment:{{ review.review }}</p>
+          </li>
+      </ul>
+</div>
+</div>
+`,
     data(){
         return{
-            tabs:['Review','Make a Review'],
+            tabs:[' Make a Review','Review'],
             selectedTab:'Review'
         }
     }
